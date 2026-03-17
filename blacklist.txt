@@ -1,1 +1,3 @@
-A blacklist of known malicious IPs and domains
+A blacklist of known malicious IPs and domains.
+
+XX.XX.XX.XX
