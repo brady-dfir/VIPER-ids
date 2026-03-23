@@ -15,3 +15,12 @@ from config import (
 # Access blacklist
 with open(BLACKLIST_FILE) as f:
     BLACKLIST = {line.strip() for line in f if line.strip()}
+
+port_scan_data = defaultdict(lambda: {"ports": set(), "first_seen": datetime.now()})
+syn_data = defaultdict(lambda: {"syn_times": [], "completed": 0})
+
+def detect_malicious_ip(src, dst):
+    if src in BLACKLIST:
+        log_alert(format_alert("ALERT", f"Traffic from malicious IP {src} to {dst}"))
+    if dst in BLACKLIST:
+        log_alert(format_alert("ALERT", f"Traffic to malicious IP {dst} from {src}"))
