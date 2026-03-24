@@ -24,3 +24,17 @@ def detect_malicious_ip(src, dst):
         log_alert(format_alert("ALERT", f"Traffic from malicious IP {src} to {dst}"))
     if dst in BLACKLIST:
         log_alert(format_alert("ALERT", f"Traffic to malicious IP {dst} from {src}"))
+
+def detect_port_scan(src, dst, dport):
+    key = (src, dst)
+    entry = port_scan_data[key]
+    now = datetime.now()
+    if (now - entry["first_seen"]).total_seconds() > PORT_SCAN_TIME_WINDOW:
+        entry["ports"] = set()
+        entry["first_seen"] = now
+    entry["ports"].add(dport)
+    if len(entry["ports"]) >= PORT_SCAN_PORT_THRESHOLD:
+        log_alert(format_alert("ALERT", f"Possible port scan from {src} to {dst}"))
+        entry["ports"] = set()
+        entry["first_seen"] = now
+
