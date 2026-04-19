@@ -1,13 +1,38 @@
-# python-ids
+# VIPER
 
-Currently in development
+## Overview
+VIPER is a lightweight Intrusion Detection System (IDS) built with python using Scapy. VIPER can detect the following events: port scans, SYN floods, suspicous DNS queries, and known malicious IPs. Alerts are printed to the console and saved to a log file in the following format:
 
-A python network IDS using packet inspection
+2026-03-14 09:21:03 [ALERT] Possible port scan from 192.168.1.55
 
-Libraries: Scapy, PyShark
+# Structure
+VIPER/
+│
+├── main.py           # Runs IDS
+├── sniffer.py        # Captures packets
+├── parser.py         # Extracts data
+├── detect.py         # Port scan, SYN flood, DNS detection
+├── alert.py          # Formats alerts
+├── logger.py         # Saves alerts to a file
+├── config.py         # Settings and configurations
+├── blacklist.txt     # Malicious IP list
+└── __init__.py       # Public interface (optional)
 
-Detect things like: port scans, SYN floods, suspicous DNS queries, known malicious IPs
+## Key Features
 
-Output alerts: [ALERT] Possible port scan from 192.168.1.55
+### Port Scan Detection
+Tracks destination ports contacted by a source within a timeframe. Alert will trigger when the number exceeds the set threshold.
 
-Save alerts to a log file
+### SYN Flood Detection
+Counts SYN packets per source and compares them to validated handshakes. Alert will trigger when SYN volume is high and handshake validation ratio is low.
+
+### Suspicious DNS Query Detection
+Flags DNS queries with excessive domain lenght, too many subdomains, suspicious TLDs (.xyz, .top, .click)
+
+### Malicious IP Detection
+Loads IPs from blacklist.txt and flags and alerts traffic that involves them.
+
+### Modular and Configurable
+Add new detectors by creating functions in detect.py and calling them from sniffer.py.
+
+## 
