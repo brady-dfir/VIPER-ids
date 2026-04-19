@@ -1,4 +1,4 @@
-python_ids/
+VIPER/
 │
 ├── main.py           # Runs IDS
 ├── sniffer.py        # Captures packets
