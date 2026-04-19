@@ -38,3 +38,18 @@ pip install scapy
 
 python main.py (use sudo if using linux)
 
+## Future Improvements
+HTTP inspection
+
+TLS SNI logging
+
+PCAP analysis
+
+YAML rules
+
+Anomaly Detection
+
+## Ownership and Contact Information
+VIPER was developed by Brady Peer as a personal project.
+
+For questions please contact brdypr@gmail.com
