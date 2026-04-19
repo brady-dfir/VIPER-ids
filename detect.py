@@ -60,6 +60,7 @@ def detect_syn_flood(src, flags):
             log_alert(format_alert("ALERT", f"Possible SYN flood from {src}"))
             entry["syn_times"] = []
             entry["completed"] = 0
+
 def detect_suspicious_dns(src, qname):
     if not qname:
         return
