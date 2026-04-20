@@ -1,7 +1,7 @@
 # VIPER
 
 ## Overview
-VIPER is a lightweight Intrusion Detection System (IDS) built with python using Scapy. VIPER can detect the following events: port scans, SYN floods, suspicous DNS queries, and known malicious IPs. Alerts are printed to the console and saved to a log file in the following format:
+VIPER is a lightweight Intrusion Detection System (IDS) built with python using Scapy. VIPER can detect the following events: port scans, SYN floods, suspicious DNS queries, and known malicious IPs. Alerts are printed to the console and saved to a log file in the following format:
 
 2026-03-14 09:21:03 [ALERT] Possible port scan from 192.168.1.55
 
